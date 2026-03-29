@@ -1,0 +1,17 @@
+version: '3.8'
+services:
+  rabbitmq:
+    image: rabbitmq:3.12-management
+    container_name: rabbitmq-ms-notificacao
+    ports:
+      - "5672:5672"   # Porta para o Java enviar as mensagens
+      - "15672:15672" # Porta para você ver o painel no navegador (Management Plugin)
+    environment:
+      - RABBITMQ_DEFAULT_USER=guest
+      - RABBITMQ_DEFAULT_PASS=guest
+    networks:
+      - rabbit-network
+
+networks:
+  rabbit-network:
+    driver: bridge
